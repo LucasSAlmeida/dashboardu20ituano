@@ -1,1 +1,5 @@
 streamlit
+dash
+pandas
+plotly
+dash-bootstrap-components
