@@ -4,6 +4,10 @@ import plotly.graph_objects as go
 
 # Função que cria o campo
 def create_pitch_plotly(length, width, unity, linecolor, df=None):
+    length='120'
+    width='80'
+    unity='yards'
+    linecolor='black'
 
     # Criar a figura do campo
     fig = go.Figure()
