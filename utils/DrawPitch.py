@@ -4,10 +4,6 @@ import plotly.graph_objects as go
 
 # Função que cria o campo
 def create_pitch_plotly(length, width, unity, linecolor, df=None):
-    if unity == "meters" and (length > 120 or width > 75):
-        return "Dimensions too large for meters. Please use yards or reduce dimensions."
-    elif unity == "yards" and (length > 130 or width > 100):
-        return "Dimensions too large for yards. Maximum length is 130 yards and maximum width is 100 yards."
 
     # Criar a figura do campo
     fig = go.Figure()
@@ -58,21 +54,6 @@ def create_pitch_plotly(length, width, unity, linecolor, df=None):
 # Layout da aplicação
 st.title("Análise de Ações no Campo")
 
-# Controle para selecionar o comprimento e a largura do campo
-length = st.slider("Selecione o comprimento do campo", 90, 130, 105)
-width = st.slider("Selecione a largura do campo", 60, 100, 68)
-
-# Controle para selecionar a unidade
-unity = st.selectbox("Selecione a unidade", ["yards", "meters"])
-
-# Seleção da cor da linha
-linecolor = st.color_picker("Selecione a cor das linhas", "#000000")
-
-# Dados fictícios (você pode carregar os seus próprios)
-data = {'x': [30, 50, 70], 'y': [20, 40, 60]}
-df = pd.DataFrame(data)
-
-# Gerar o gráfico do campo
 fig = create_pitch_plotly(length, width, unity, linecolor, df)
 
 # Exibir o gráfico no Streamlit
