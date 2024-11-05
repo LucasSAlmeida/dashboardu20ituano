@@ -4,10 +4,6 @@ import plotly.graph_objects as go
 
 # Função que cria o campo
 def create_pitch_plotly(length, width, unity, linecolor, df=None):
-    length='120'
-    width='80'
-    unity='yards'
-    linecolor='black'
 
     # Criar a figura do campo
     fig = go.Figure()
@@ -55,10 +51,3 @@ def create_pitch_plotly(length, width, unity, linecolor, df=None):
 
     return fig
 
-# Layout da aplicação
-st.title("Análise de Ações no Campo")
-
-fig = create_pitch_plotly(length, width, unity, linecolor, df)
-
-# Exibir o gráfico no Streamlit
-st.plotly_chart(fig)
