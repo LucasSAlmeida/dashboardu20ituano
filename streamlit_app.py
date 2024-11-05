@@ -9,8 +9,6 @@ df = pd.read_csv('https://raw.githubusercontent.com/LucasSAlmeida/dados/main/eve
 df_grouped_by = df.groupby(['evento', 'posicao'])[['x']].count()
 df_grouped_by.reset_index(inplace=True)
 
-df_xT = pd.read_csv('https://raw.githubusercontent.com/LucasSAlmeida/dados/main/xT_ituano_despbrasil_s20_r1.csv')
-
 # Título da aplicação
 st.title("Ituano Futebol Clube - Sub20")
 
