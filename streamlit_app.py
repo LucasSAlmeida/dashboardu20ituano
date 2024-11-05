@@ -23,8 +23,8 @@ selected_action = st.selectbox('Selecione uma ação', df.evento.unique())
 st.subheader('Gráfico de Ações em Campo')
 filtered_df = df[(df['posicao'] == selected_player) & (df['jogo'] == selected_game)]
 
-if selected_action == 'Passe':
-    filtered_passes = filtered_df[(filtered_df['evento'] == 'Passe')]
+if selected_action == 'Passe certo':
+    filtered_passes = filtered_df[(filtered_df['evento'] == 'Passe certo')]
     
     # Criar figura do campo
     pitch_figure = create_pitch_plotly(120, 80, 'yards', 'black')
