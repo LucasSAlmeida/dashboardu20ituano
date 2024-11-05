@@ -63,8 +63,8 @@ else:
 
 st.plotly_chart(pitch_figure)
 
-# 2. Radar Plot
-st.subheader('Radar de Ações')
+# 2. Radar Plot por 90
+st.subheader('Radar de Ações por 90')
 filtered_grouped_df = df_grouped_by[df_grouped_by['posicao'] == selected_player]
 
 # Preencher eventos ausentes com valor 0
@@ -78,11 +78,49 @@ filtered_grouped_df = filtered_grouped_df.sort_values('evento')
 first_event = filtered_grouped_df.iloc[0]
 filtered_grouped_df = pd.concat([filtered_grouped_df, pd.DataFrame([first_event])], ignore_index=True)
 
+# Dividir os valores da coluna 'x' por 90
+filtered_grouped_df['x'] = filtered_grouped_df['x'] / 90
+
+# Gerar o gráfico radar
 radar_figure = px.line_polar(filtered_grouped_df, r='x', theta='evento').update_layout(
     height=450, width=570, title=f'Radar de ações - {selected_player}', plot_bgcolor='black')
 radar_figure.update_traces(line=dict(color='red'), fill='toself')
 
 st.plotly_chart(radar_figure)
+
+
+#3. Dados da Temporada
+st.subheader('Gráfico de Barras de Ações na temporada')
+
+# Filtrando os dados para o jogador selecionado
+filtered_player_df = df[df['posicao'] == selected_player]
+
+# Contagem das ações (eventos) do jogador
+action_counts = filtered_player_df['evento'].value_counts().reset_index()
+action_counts.columns = ['Evento', 'Quantidade']
+
+# Criar gráfico de barras
+bar_figure = px.bar(action_counts, x='Evento', y='Quantidade', 
+                    title=f'Ações do Jogador {selected_player}', 
+                    labels={'Quantidade': 'Número de Ações'}, 
+                    color='Quantidade', 
+                    color_continuous_scale='Viridis')
+
+# Exibir o gráfico
+st.plotly_chart(bar_figure)
+
+# 3. Exibir Tabela das Ações do Jogador
+st.subheader('Tabela de Ações do Jogador')
+
+# Filtrando os dados para o jogador selecionado
+filtered_player_df = df[df['posicao'] == selected_player]
+
+# Contagem das ações (eventos) do jogador
+action_counts = filtered_player_df['evento'].value_counts().reset_index()
+action_counts.columns = ['Evento', 'Quantidade']
+
+# Exibir a tabela
+st.dataframe(action_counts)
 
 
 
