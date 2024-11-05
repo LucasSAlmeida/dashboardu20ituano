@@ -63,33 +63,7 @@ else:
 
 st.plotly_chart(pitch_figure)
 
-# 2. Radar Plot por 90
-st.subheader('Radar de Ações por 90')
-filtered_grouped_df = df_grouped_by[df_grouped_by['posicao'] == selected_player]
-
-# Preencher eventos ausentes com valor 0
-all_events = df['evento'].unique()
-for event in all_events:
-    if event not in filtered_grouped_df['evento'].values:
-        new_row = pd.DataFrame({'evento': [event], 'x': [0], 'posicao': [selected_player]})
-        filtered_grouped_df = pd.concat([filtered_grouped_df, new_row], ignore_index=True)
-
-filtered_grouped_df = filtered_grouped_df.sort_values('evento')
-first_event = filtered_grouped_df.iloc[0]
-filtered_grouped_df = pd.concat([filtered_grouped_df, pd.DataFrame([first_event])], ignore_index=True)
-
-# Dividir os valores da coluna 'x' por 90
-filtered_grouped_df['x'] = filtered_grouped_df['x'] / 90
-
-# Gerar o gráfico radar
-radar_figure = px.line_polar(filtered_grouped_df, r='x', theta='evento').update_layout(
-    height=450, width=570, title=f'Radar de ações - {selected_player}', plot_bgcolor='black')
-radar_figure.update_traces(line=dict(color='red'), fill='toself')
-
-st.plotly_chart(radar_figure)
-
-
-#3. Dados da Temporada
+#2. Dados da Temporada
 st.subheader('Gráfico de Barras de Ações na temporada')
 
 # Filtrando os dados para o jogador selecionado
