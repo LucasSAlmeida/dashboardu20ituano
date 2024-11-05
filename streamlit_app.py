@@ -10,10 +10,9 @@ df_grouped_by = df.groupby(['evento', 'posicao'])[['x']].count()
 df_grouped_by.reset_index(inplace=True)
 
 df_xT = pd.read_csv('https://raw.githubusercontent.com/LucasSAlmeida/dados/main/xT_ituano_despbrasil_s20_r1.csv')
-df_minutagem = pd.read_csv('https://raw.githubusercontent.com/LucasSAlmeida/dados/main/ituano_despbrasil_s20_r1_minutos.csv')
 
 # Título da aplicação
-st.title("Ituano Futebol Clube - Categoria Sub20")
+st.title("Ituano Futebol Clube - Sub20")
 
 # Dropdowns
 selected_player = st.selectbox('Selecione um jogador', df.posicao.unique())
@@ -85,14 +84,5 @@ radar_figure.update_traces(line=dict(color='red'), fill='toself')
 
 st.plotly_chart(radar_figure)
 
-# 3. Ameaça Esperada (xT)
-st.subheader('Ameaça Esperada')
-xT_figure = px.bar(df_xT.sort_values('xT', ascending=False), x='posicao', y='xT', color_discrete_sequence=['red'])
-xT_figure.update_layout(height=450, width=570, title='Ameaça Esperada', plot_bgcolor='white')
 
-st.plotly_chart(xT_figure)
-
-# 4. Tabela de Minutagem
-st.subheader('Tabela de Minutos')
-st.dataframe(df_minutagem)
 
