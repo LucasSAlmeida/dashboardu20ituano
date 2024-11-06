@@ -25,7 +25,7 @@ if selected_action == 'Passe certo':
     filtered_passes = filtered_df[(filtered_df['evento'] == 'Passe certo')]
     
     # Criar figura do campo
-    pitch_figure = create_pitch_plotly(120, 80, 'yards', 'black')
+    pitch_figure = create_pitch_plotly(120, 80, 'yards', 'black',df=filtered_passes)
     
     # Adicionar setas de passes
     for _, row in filtered_passes.iterrows():
