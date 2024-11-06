@@ -39,6 +39,8 @@ def create_pitch_plotly(length, width, unity, linecolor, df=None):
         xaxis=dict(visible=False),
         yaxis=dict(visible=False)
     )
+    #Reverte os valores do eixo y
+    fig.update_yaxes(autorange='reversed')
 
     # Adiciona os pontos no campo, se fornecidos
     if df is not None:
