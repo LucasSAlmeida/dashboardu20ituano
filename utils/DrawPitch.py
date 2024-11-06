@@ -31,7 +31,6 @@ def create_pitch_plotly(length, width, unity, linecolor, df=None):
 
     # Configurações do layout
     fig.update_layout(
-        title='Ações em campo',
         height=420,
         width=600,
         margin=dict(l=30, r=30, t=30, b=30),
@@ -46,7 +45,7 @@ def create_pitch_plotly(length, width, unity, linecolor, df=None):
         fig.add_trace(go.Scatter(
             x=df['x'], y=df['y'], mode='markers',
             marker=dict(size=10, color='red'),
-            name='Posições dos Jogadores'
+            showlegend=False
         ))
 
     return fig
